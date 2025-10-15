@@ -26,7 +26,7 @@ Stay tuned for updates!
 ## 💡 Contributing
 
 Have ideas, suggestions, or feedback?  
-Open an [issue](https://github.com/mocha.sh/mocha.sh/issues) or start a discussion —  
+Open an [issue](https://github.com/Mocha-sh/Mocha/issues) or start a discussion —  
 every idea is welcome!  
 
 ---
