@@ -1,41 +1,43 @@
 # ☕ Mocha.sh
 
-**Mocha.sh** is an open project currently in its early stages.  
-What it will become is still brewing — but one thing’s for sure:  
-it aims to be simple, elegant, and genuinely useful.  
+**Mocha.sh** is a minimalist, aesthetic CLI tool for developers —  
+bringing a cozy, stylish touch to your terminal while helping you stay productive.  
 
 ---
 
-## 🌱 Idea
+## 🌱 Features (coming soon)
 
-Mocha.sh started as a small experiment.  
-The goal is to build something that’s fun to create, minimal in design,  
-and meaningful in purpose — like a good cup of coffee:  
-strong, clear, and uncomplicated.  
-
----
-
-## ⚙️ Status
-
-🚧 **Work in Progress**  
-The first ideas and structure are coming together.  
-Stay tuned for updates!
+- **Quick Notes** – jot down small snippets or ideas directly from the terminal  
+- **Focus Timer** – keep your workflow smooth and your coffee warm  
+- **Stylish Output** – color-coded messages, ASCII art, icons  
+- **Themes & Prompts** – cozy terminal themes for your shell  
+- **Small Utilities** – handy helper commands for everyday tasks  
 
 ---
 
-## 💡 Contributing
+## ⚙️ Installation
 
-Have ideas, suggestions, or feedback?  
-Open an [issue](https://github.com/Mocha-sh/Mocha/issues) or start a discussion —  
-every idea is welcome!  
+```bash
+# Clone the repo
+git clone https://github.com/mocha.sh/mocha.git
+cd mocha.sh
+
+# Make it executable
+chmod +x mocha.sh
+
+# Optional: add to PATH
+export PATH="$PATH:$(pwd)"
 
 ---
+## 💡 Usage Examples
 
-## 🧾 License
+# Start a focus timer
+mocha timer 25
 
-This project is licensed under the [MIT License](LICENSE).
+# Create a quick note
+mocha note "Idea for project"
 
----
+# Display cozy terminal greeting
+mocha greet
 
-### ☕ Stay tuned  
-Follow the project and watch **Mocha.sh** grow.
+    More commands and features will be added as Mocha.sh evolves ☕
