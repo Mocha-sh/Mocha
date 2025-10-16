@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import click
-from commands import greet, note, timer, todo
+from commands import greet, note, timer, todo, coffee
 
 @click.group()
 def cli():
@@ -44,6 +44,25 @@ def todo_cmd(args):
     else:
         todo.add_task(" ".join(args))
 
+@cli.group()
+def coffee_cmd():
+    """Track your daily coffee cups ☕"""
+    pass
+
+@coffee_cmd.command("add")
+def add_coffee():
+    """Add one cup of coffee"""
+    coffee.add_coffee()
+
+@coffee_cmd.command("stats")
+def stats():
+    """Show your coffee stats"""
+    coffee.show_stats()
+
+@coffee_cmd.command("reset")
+def reset():
+    """Reset all coffee data"""
+    coffee.reset_coffee()
 
 if __name__ == "__main__":
     cli()
