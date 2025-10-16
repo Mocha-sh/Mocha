@@ -22,3 +22,20 @@ def list_notes():
     with open(NOTES_FILE, "r") as f:
         for i, line in enumerate(f, 1):
             console.print(f"{i}. {line.strip()}")
+
+def delete_note(index):
+    """Delete a note by its index"""
+    if not NOTES_FILE.exists():
+        console.print("No notes found.", style="yellow")
+        return
+    with open(NOTES_FILE, "r") as f:
+        lines = f.readlines()
+
+    if index < 1 or index > len(lines):
+        console.print("Invalid note number.", style="red")
+        return
+
+    deleted = lines.pop(index - 1)
+    with open(NOTES_FILE, "w") as f:
+        f.writelines(lines)
+    console.print(f"Deleted note: {deleted.strip()}", style="green")
