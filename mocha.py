@@ -23,7 +23,7 @@ def note_cmd(args):
     elif args[0].lower() == "delete":
         note.delete_note(" ".join(args[1:]))
     else:
-        note.add_note(" ".join(args))
+        note.run(" ".join(args))
 
 @cli.command()
 @click.argument('minutes', type=int)
