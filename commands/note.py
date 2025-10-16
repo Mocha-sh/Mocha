@@ -31,6 +31,7 @@ def delete_note(index):
     with open(NOTES_FILE, "r") as f:
         lines = f.readlines()
 
+    index = int(index)
     if index < 1 or index > len(lines):
         console.print("Invalid note number.", style="red")
         return
