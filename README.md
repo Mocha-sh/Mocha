@@ -12,6 +12,7 @@ bringing a cozy, stylish touch to your terminal while helping you stay productiv
 - **Stylish Output** – color-coded messages, ASCII art, icons  
 - **Hydration Tracker** - add glasses to your Tracker
 - **Coffee Tracker** - Track your Coffee
+- **Plugins** - you can now create your own plugins for Mocha
 
 ---
 
