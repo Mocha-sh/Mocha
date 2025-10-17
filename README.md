@@ -23,7 +23,7 @@ bringing a cozy, stylish touch to your terminal while helping you stay productiv
 ---
 
 ## How to use Mocha.sh
-'''
+
     mocha note "your note"
 
     mocha note list
@@ -39,7 +39,8 @@ bringing a cozy, stylish touch to your terminal while helping you stay productiv
     mocha coffee add - adds on cup
 
     mocha coffee stats  - same as hydrate stats
-'''
+
+---
 
 
     More commands and features will be added as Mocha.sh evolves ☕
