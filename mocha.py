@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import click
-from commands import greet, note, timer, todo, coffee
+from commands import greet, note, timer, todo, coffee, hydrate
 
 @click.group()
 def cli():
@@ -63,6 +63,26 @@ def stats():
 def reset():
     """Reset all coffee data"""
     coffee.reset_coffee()
+
+@cli.group()
+def hydrate():
+    """Track your daily water intake"""
+    pass
+
+@hydrate.command("add")
+def hydrate_add():
+    from commands import hydrate
+    hydrate.add_glass()
+
+@hydrate.command("stats")
+def hydrate_stats():
+    from commands import hydrate
+    hydrate.show_stats()
+
+@hydrate.command("reset")
+def hydrate_reset():
+    from commands import hydrate
+    hydrate.reset_hydration()
 
 if __name__ == "__main__":
     cli()
