@@ -23,7 +23,7 @@ bringing a cozy, stylish touch to your terminal while helping you stay productiv
 
 - **Themes & Prompts** – cozy terminal themes for your shell  
 - **Small Utilities** – handy helper commands for everyday tasks  
-
+- **Installable** - install commands
 - **Mocha.conf files** - full customizable mocha.sh
 ---
 
