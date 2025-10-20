@@ -12,21 +12,15 @@ from textual.reactive import reactive
 init()
 console = Console()
 
-# Directory where all markdown notes are stored
+
 NOTES_DIR = Path.home() / ".mocha_notes"
 NOTES_DIR.mkdir(exist_ok=True)
 
-# ------------------------------------------------------------
-# Helper Functions
-# ------------------------------------------------------------
 
 def _list_note_files():
     """Return all note files sorted by modification date (newest first)."""
     return sorted(NOTES_DIR.glob("*.md"), key=lambda f: f.stat().st_mtime, reverse=True)
 
-# ------------------------------------------------------------
-# Main Note Functions
-# ------------------------------------------------------------
 
 def run(text):
     """Create a new markdown note."""
@@ -97,9 +91,6 @@ def delete_note(index):
     note_file.unlink()
     console.print(f"🗑️ Deleted note: {note_file.name}", style="green")
 
-# ------------------------------------------------------------
-# Markdown Editor with Syntax Highlighting + Live Preview
-# ------------------------------------------------------------
 
 class MochaEditor(App):
     """Markdown editor with syntax highlighting, live preview, and a stylish status bar."""
@@ -111,13 +102,13 @@ class MochaEditor(App):
         self.note_file = note_file
         self.text_area: TextArea | None = None
         self.preview: Static | None = None
-        # Syntax theme (examples: monokai, dracula, github-dark)
+  
         self.syntax_theme = theme or "monokai"
 
     def compose(self) -> ComposeResult:
         """Define the layout of the editor and preview areas."""
         with Horizontal(id="layout"):
-            # Syntax highlighting for Markdown
+
             self.text_area = TextArea(
                 language="markdown",
                 theme=self.syntax_theme,
