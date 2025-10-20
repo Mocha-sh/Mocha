@@ -16,7 +16,7 @@ bringing a cozy, stylish touch to your terminal while helping you stay productiv
 - - **New Note/ File System** - i will add a new system for mocha files
   - 
 ![MochaEditor_2025-10-20T20_51_10_297548](https://github.com/user-attachments/assets/a6bc3a95-d832-484a-9fac-7c1cdbea5f61)
-[MochaEditor_2025-10-20T21_01_35_736691](https://github.com/user-attachments/assets/61225954-b6fb-45e8-a739-1c6a78a266a2)
+![MochaEditor_2025-10-20T21_01_35_736691](https://github.com/user-attachments/assets/61225954-b6fb-45e8-a739-1c6a78a266a2)
 ---
 
 ## 🕖 Coming soon
