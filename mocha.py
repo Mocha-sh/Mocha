@@ -20,16 +20,19 @@ def greet_cmd():
 @cli.command()
 @click.argument('args', nargs=-1)
 def note_cmd(args):
-    """Create or list quick notes"""
+    """Create, list, view, edit, or delete notes"""
     if not args:
         note.list_notes()
     elif args[0].lower() == "list":
         note.list_notes()
+    elif args[0].lower() == "view":
+        note.view_note(args[1])
     elif args[0].lower() == "delete":
-        note.delete_note(" ".join(args[1:]))
+        note.delete_note(args[1])
+    elif args[0].lower() == "edit":
+        note.edit_note(args[1])
     else:
         note.run(" ".join(args))
-
 
 @cli.command()
 @click.argument('minutes', type=int)
