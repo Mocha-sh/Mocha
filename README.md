@@ -33,7 +33,11 @@ bringing a cozy, stylish touch to your terminal while helping you stay productiv
 
     mocha note list
 
-    mocha note delete "number"
+    mocha note view <index>
+
+    mocha note edit <index>
+
+    mocha note delete <index>
 
     mocha timer 25 -  for a 25 Minutes Timer
 
