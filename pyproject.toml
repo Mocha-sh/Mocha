@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mocha-sh"
+version = "0.1.6"
+description = "☕ Mocha.sh — your cozy terminal companion"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Robin Engels" }]
+requires-python = ">=3.8"
+dependencies = [
+  "click>=8.1",
+  "rich>=13.0",
+  "colorama>=0.4",
+  "InquirerPy>=0.3",
+  "textual>=0.62",
+  "pygments>=2.17"
+]
+
+[project.urls]
+Homepage = "https://github.com/Mocha-sh/Mocha"
+Issues = "https://github.com/Mocha-sh/Mocha/issues"
+
+[project.scripts]
+mocha = "mocha:cli"
