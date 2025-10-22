@@ -18,6 +18,8 @@ dependencies = [
   "textual>=0.62",
   "pygments>=2.17"
 ]
+[tool.setuptools]
+packages = ["mocha", "commands"]
 
 [project.urls]
 Homepage = "https://github.com/Mocha-sh/Mocha"
