@@ -1,4 +1,4 @@
-name: release
+name: full-release
 
 on:
   push:
@@ -6,20 +6,72 @@ on:
       - "v*.*.*"
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - uses: actions/checkout@v4
-      - name: Set up Python
+      - name: 🧭 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🐍 Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: Install tools
-        run: pip install build twine
-      - name: Build
+
+      - name: ⚙️ Install dependencies
+        run: |
+          python -m pip install --upgrade pip build twine requests pyyaml
+
+      - name: 🧱 Build package
         run: python -m build
-      - name: Upload to PyPI
+
+      - name: 🧪 Test package installation
+        run: |
+          pip install dist/*.whl
+          mocha --help
+
+      - name: 📦 Publish to PyPI
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
         run: python -m twine upload dist/*
+
+      - name: 🪶 Generate SHA256 for Homebrew
+        id: brewhash
+        run: echo "sha=$(sha256sum dist/*.tar.gz | cut -d ' ' -f 1)" >> $GITHUB_OUTPUT
+
+      - name: 🍎 Update Homebrew formula
+        run: |
+          VERSION=${GITHUB_REF_NAME#v}
+          SHA=${{ steps.brewhash.outputs.sha }}
+          git clone https://github.com/robinengels/homebrew-mocha.git
+          cd homebrew-mocha/Formula
+          sed -i "s|url .*|url \"https://files.pythonhosted.org/packages/source/m/mocha-sh/mocha-sh-${VERSION}.tar.gz\"|" mocha-sh.rb
+          sed -i "s|sha256 .*|sha256 \"${SHA}\"|" mocha-sh.rb
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add mocha-sh.rb
+          git commit -m "Update mocha-sh to ${VERSION}"
+          git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/robinengels/homebrew-mocha.git HEAD:main
+
+     
+
+      - name: 🪟 Update Scoop manifest
+        run: |
+          VERSION=${GITHUB_REF_NAME#v}
+          git clone https://github.com/robinengels/scoop-mocha.git scoop
+          cd scoop/bucket
+          sed -i "s/\"version\":.*/\"version\": \"${VERSION}\",/" mocha-sh.json
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add mocha-sh.json
+          git commit -m "Update mocha-sh to ${VERSION}"
+          git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/robinengels/scoop-mocha.git HEAD:main
+
+      - name: 🧾 Create GitHub release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: dist/*
