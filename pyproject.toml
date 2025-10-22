@@ -19,11 +19,12 @@ dependencies = [
   "pygments>=2.17"
 ]
 [tool.setuptools]
-packages = ["mocha", "commands"]
+packages = ["mocha", "Mocha.commands"]
+
+
+[project.scripts]
+mocha = "mocha:cli"
 
 [project.urls]
 Homepage = "https://github.com/Mocha-sh/Mocha"
 Issues = "https://github.com/Mocha-sh/Mocha/issues"
-
-[project.scripts]
-mocha = "mocha:cli"

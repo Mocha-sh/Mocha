@@ -9,7 +9,8 @@ def cli():
     """Mocha.sh — your cozy terminal companion ☕"""
     pass
 
-from commands import greet, note, timer, todo, coffee, hydrate
+from Mocha.commands import note, todo, timer, coffee, hydrate, greet
+
 
 @cli.command()
 def greet_cmd():
