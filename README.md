@@ -17,9 +17,13 @@ Install globally with [pipx](https://pypa.github.io/pipx/):
 
 ```bash
 pipx install mocha-sh
+```
 Or update:
+```bash
 pipx upgrade mocha-sh
+```
 Then run:
+```bash 
 mocha
 ```
 ylkf
