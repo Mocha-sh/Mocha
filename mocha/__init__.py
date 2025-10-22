@@ -2,6 +2,9 @@
 import click
 import os
 import importlib.util
+import pathlib
+
+from mocha.commands import note, greet, hydrate, todo, timer, coffee
 
 
 @click.group()
@@ -10,17 +13,17 @@ def cli():
     pass
 
 
-from mocha.commands import note, greet, hydrate, todo, timer, coffee
 
 
-@cli.command()
-def greet_cmd():
+@cli.command(name="greet")
+def greet():
     """Send a friendly greeting"""
-    greet.run()
+    from mocha.commands import greet as greet_module
+    greet_module.run()
 
 
-@cli.command()
-@click.argument('args', nargs=-1)
+@cli.command(name="note")
+@click.argument("args", nargs=-1)
 def note_cmd(args):
     """Create, list, view, edit, or delete notes"""
     if not args:
@@ -28,23 +31,24 @@ def note_cmd(args):
     elif args[0].lower() == "list":
         note.list_notes()
     elif args[0].lower() == "view":
-        note.view_note(args[1])
+        note.view_note(int(args[1]))
     elif args[0].lower() == "delete":
-        note.delete_note(args[1])
+        note.delete_note(int(args[1]))
     elif args[0].lower() == "edit":
-        note.edit_note(args[1])
+        note.edit_note(int(args[1]))
     else:
         note.run(" ".join(args))
 
-@cli.command()
-@click.argument('minutes', type=int)
+
+@cli.command(name="timer")
+@click.argument("minutes", type=int)
 def timer_cmd(minutes):
     """Start a focus timer (in minutes)"""
     timer.start_timer(minutes)
 
 
-@cli.command()
-@click.argument('args', nargs=-1)
+@cli.command(name="todo")
+@click.argument("args", nargs=-1)
 def todo_cmd(args):
     """Add or list to-do items"""
     if not args:
@@ -57,56 +61,57 @@ def todo_cmd(args):
         todo.add_task(" ".join(args))
 
 
-
-@cli.group()
-def coffee_cmd():
+@cli.group(name="coffee")
+def coffee_group():
     """Track your daily coffee cups ☕"""
     pass
 
 
-@coffee_cmd.command("add")
+@coffee_group.command(name="add")
 def add_coffee():
     """Add one cup of coffee"""
     coffee.add_coffee()
 
 
-@coffee_cmd.command("stats")
-def stats():
+@coffee_group.command(name="stats")
+def coffee_stats():
     """Show your coffee stats"""
     coffee.show_stats()
 
 
-@coffee_cmd.command("reset")
-def reset():
+@coffee_group.command(name="reset")
+def coffee_reset():
     """Reset all coffee data"""
     coffee.reset_coffee()
 
 
 
-@cli.group()
-def hydrate_cmd():
+@cli.group(name="hydrate")
+def hydrate_group():
     """Track your daily water intake 💧"""
     pass
 
 
-@hydrate_cmd.command("add")
+@hydrate_group.command(name="add")
 def hydrate_add():
+    """Add one glass of water"""
     hydrate.add_glass()
 
 
-@hydrate_cmd.command("stats")
+@hydrate_group.command(name="stats")
 def hydrate_stats():
+    """Show hydration stats"""
     hydrate.show_stats()
 
 
-@hydrate_cmd.command("reset")
+@hydrate_group.command(name="reset")
 def hydrate_reset():
+    """Reset hydration data"""
     hydrate.reset_hydration()
 
 
-import pathlib
-
 PLUGIN_DIR = os.path.join(pathlib.Path.home(), ".mocha_plugins")
+
 
 def load_plugins(cli):
     """Load all plugins from ~/.mocha_plugins/ directory."""
