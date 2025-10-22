@@ -26,7 +26,15 @@ Then run:
 ```bash 
 mocha
 ```
-ylkf
+🍎 macOS (via Homebrew)
+```bash
+brew tap mocha-sh/mocha
+brew install mocha-sh
+```
+To update:
+```bash
+brew upgrade mocha-sh
+```
 ## 🌱 Features 
 
 - **Quick Notes** – jot down small snippets or ideas directly from the terminal  
