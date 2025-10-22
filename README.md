@@ -35,6 +35,16 @@ To update:
 ```bash
 brew upgrade mocha-sh
 ```
+🐧 Ubuntu / Debian (.deb package)
+```bash
+sudo apt install ./mocha-sh_0.1.6_all.deb
+```
+Or build it yourself:
+```bash
+sudo apt install dpkg-dev debhelper dh-python python3-all python3-setuptools
+dpkg-buildpackage -us -uc
+sudo apt install ../mocha-sh_0.1.6_all.deb
+```
 ## 🌱 Features 
 
 - **Quick Notes** – jot down small snippets or ideas directly from the terminal  
