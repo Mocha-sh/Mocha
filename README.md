@@ -45,6 +45,15 @@ sudo apt install dpkg-dev debhelper dh-python python3-all python3-setuptools
 dpkg-buildpackage -us -uc
 sudo apt install ../mocha-sh_0.1.6_all.deb
 ```
+🪟 Windows (via Scoop)
+```bash
+scoop bucket add mocha https://github.com/mocha-sh/scoop-mocha
+scoop install mocha-sh
+``` 
+To update:
+```bash
+scoop update mocha-sh
+```
 ## 🌱 Features 
 
 - **Quick Notes** – jot down small snippets or ideas directly from the terminal  
@@ -63,7 +72,6 @@ sudo apt install ../mocha-sh_0.1.6_all.deb
 
 - **Themes & Prompts** – cozy terminal themes for your shell  
 - **Small Utilities** – handy helper commands for everyday tasks  
-- **Installable** - install commands
 - **Mocha.conf files** - full customizable mocha.sh
 ---
 
