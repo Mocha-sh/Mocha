@@ -9,7 +9,7 @@ description = "☕ Mocha.sh — your cozy terminal companion"
 readme = "README.md"
 license = { text = "MIT" }
 authors = [{ name = "Robin Engels" }]
-requires-python = ">=3.10"
+requires-python = ">=3.8"
 dependencies = [
   "click>=8.1",
   "rich>=13.0",
