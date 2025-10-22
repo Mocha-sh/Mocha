@@ -44,7 +44,7 @@ jobs:
         run: |
           VERSION=${GITHUB_REF_NAME#v}
           SHA=${{ steps.brewhash.outputs.sha }}
-          git clone https://github.com/robinengels/homebrew-mocha.git
+          git clone https://github.com/Mocha-sh/homebrew-mocha.git
           cd homebrew-mocha/Formula
           sed -i "s|url .*|url \"https://files.pythonhosted.org/packages/source/m/mocha-sh/mocha-sh-${VERSION}.tar.gz\"|" mocha-sh.rb
           sed -i "s|sha256 .*|sha256 \"${SHA}\"|" mocha-sh.rb
@@ -52,21 +52,21 @@ jobs:
           git config user.email "actions@github.com"
           git add mocha-sh.rb
           git commit -m "Update mocha-sh to ${VERSION}"
-          git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/robinengels/homebrew-mocha.git HEAD:main
+          git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/Mocha-sh/homebrew-mocha.git HEAD:main
 
      
 
       - name: 🪟 Update Scoop manifest
         run: |
           VERSION=${GITHUB_REF_NAME#v}
-          git clone https://github.com/robinengels/scoop-mocha.git scoop
+          git clone https://github.com/Mocha-sh/scoop-mocha.git scoop
           cd scoop/bucket
           sed -i "s/\"version\":.*/\"version\": \"${VERSION}\",/" mocha-sh.json
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add mocha-sh.json
           git commit -m "Update mocha-sh to ${VERSION}"
-          git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/robinengels/scoop-mocha.git HEAD:main
+          git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/Mocha-sh/scoop-mocha.git HEAD:main
 
       - name: 🧾 Create GitHub release
         uses: softprops/action-gh-release@v1
