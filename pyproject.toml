@@ -24,7 +24,7 @@ dependencies = [
 mocha = "mocha:cli"
 
 [tool.setuptools]
-packages = ["mocha", "mocha.commands"]
+packages = ["mocha", "commands"]
 
 [project.urls]
 Homepage = "https://github.com/Mocha-sh/Mocha"
