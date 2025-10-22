@@ -1,0 +1,18 @@
+from setuptools import setup, find_packages
+
+setup(
+    name="mocha",
+    version="0.1.6",
+    packages=find_packages(),
+    install_requires=[
+        "click",
+        "rich",
+        "colorama",
+        "InquirerPy",
+    ],
+    entry_points={
+        "console_scripts": [
+            "mocha=mocha.mocha:cli",
+        ],
+    },
+)
