@@ -1,6 +1,0 @@
-click>=8.1
-rich>=13.0
-colorama>=0.4
-InquirerPy>=0.3
-textual>=0.62
-pygments>=2.17
