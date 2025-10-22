@@ -4,7 +4,25 @@
 bringing a cozy, stylish touch to your terminal while helping you stay productive.  
 
 ---
+## ☕ Installation
 
+Mocha.sh is available for all major platforms —  
+install it the way that fits your setup best.
+
+---
+
+### 🐍 **Universal (Recommended for all systems)**
+
+Install globally with [pipx](https://pypa.github.io/pipx/):
+
+```bash
+pipx install mocha-sh
+Or update:
+pipx upgrade mocha-sh
+Then run:
+mocha
+```
+ylkf
 ## 🌱 Features 
 
 - **Quick Notes** – jot down small snippets or ideas directly from the terminal  
