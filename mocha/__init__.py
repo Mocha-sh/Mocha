@@ -10,7 +10,7 @@ def cli():
     pass
 
 
-from commands import note, greet, hydrate, todo, timer, coffee
+from mocha.mocha.commands import note, greet, hydrate, todo, timer, coffee
 
 
 @cli.command()
