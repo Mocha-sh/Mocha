@@ -19,7 +19,7 @@ dependencies = [
   "pygments>=2.17"
 ]
 [tool.setuptools]
-packages = ["mocha", "Mocha.commands"]
+packages = ["mocha", "commands"]
 
 
 [project.scripts]
