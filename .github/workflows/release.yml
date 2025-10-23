@@ -35,18 +35,8 @@ jobs:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
         run: python -m twine upload dist/*
-        
-      - name: 🪟 Update Scoop manifest
-        run: |
-          VERSION=${GITHUB_REF_NAME#v}
-          git clone https://github.com/Mocha-sh/scoop-mocha.git scoop
-          cd scoop/bucket
-          sed -i "s/\"version\":.*/\"version\": \"${VERSION}\",/" mocha-sh.json
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add mocha-sh.json
-          git commit -m "Update mocha-sh to ${VERSION}"
-          git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/Mocha-sh/scoop-mocha.git HEAD:main
+
+
 
       - name: 🧾 Create GitHub release
         uses: softprops/action-gh-release@v1
