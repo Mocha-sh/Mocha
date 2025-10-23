@@ -35,32 +35,7 @@ jobs:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
         run: python -m twine upload dist/*
-
-      - name: 🪶 Generate SHA256 for Homebrew
-        id: brewhash
-        run: echo "sha=$(sha256sum dist/*.tar.gz | cut -d ' ' -f 1)" >> $GITHUB_OUTPUT
-
-      
-    - name: Update Homebrew formula
-      env:
-        VERSION: ${{ github.ref_name }}
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
-       run: |
-          git clone https://x-access-token:${GH_TOKEN}@github.com/Mocha-sh/homebrew-mocha.git
-            cd homebrew-mocha
-
-            git config user.name "mocha-bot"
-            git config user.email "bot@mocha.sh"
-
-            sed -i "s|url \".*\"|url \"https://files.pythonhosted.org/packages/source/m/mocha-sh/mocha-sh-${VERSION}.tar.gz\"|" Formula/mocha-sh.rb
-            sed -i "s|sha256 \".*\"|sha256 \"$(curl -sL https://pypi.org/pypi/mocha-sh/${VERSION}/json | jq -r '.urls[0].digests.sha256')\"|" Formula/mocha-sh.rb
-
-            git add Formula/mocha-sh.rb
-            git commit -m "Update mocha-sh to ${VERSION}" || echo "No changes to commit"
-            git push origin HEAD:main
-
         
-
       - name: 🪟 Update Scoop manifest
         run: |
           VERSION=${GITHUB_REF_NAME#v}
