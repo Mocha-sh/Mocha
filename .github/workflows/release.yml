@@ -40,21 +40,26 @@ jobs:
         id: brewhash
         run: echo "sha=$(sha256sum dist/*.tar.gz | cut -d ' ' -f 1)" >> $GITHUB_OUTPUT
 
-      - name: 🍎 Update Homebrew formula
-        run: |
-          VERSION=${GITHUB_REF_NAME#v}
-          SHA=${{ steps.brewhash.outputs.sha }}
-          git clone https://github.com/Mocha-sh/homebrew-mocha.git
-          cd homebrew-mocha/Formula
-          sed -i "s|url .*|url \"https://files.pythonhosted.org/packages/source/m/mocha-sh/mocha-sh-${VERSION}.tar.gz\"|" mocha-sh.rb
-          sed -i "s|sha256 .*|sha256 \"${SHA}\"|" mocha-sh.rb
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add mocha-sh.rb
-          git commit -m "Update mocha-sh to ${VERSION}"
-          git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/Mocha-sh/homebrew-mocha.git HEAD:main
+      
+    - name: Update Homebrew formula
+      env:
+        VERSION: ${{ github.ref_name }}
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+       run: |
+          git clone https://x-access-token:${GH_TOKEN}@github.com/Mocha-sh/homebrew-mocha.git
+            cd homebrew-mocha
 
-     
+            git config user.name "mocha-bot"
+            git config user.email "bot@mocha.sh"
+
+            sed -i "s|url \".*\"|url \"https://files.pythonhosted.org/packages/source/m/mocha-sh/mocha-sh-${VERSION}.tar.gz\"|" Formula/mocha-sh.rb
+            sed -i "s|sha256 \".*\"|sha256 \"$(curl -sL https://pypi.org/pypi/mocha-sh/${VERSION}/json | jq -r '.urls[0].digests.sha256')\"|" Formula/mocha-sh.rb
+
+            git add Formula/mocha-sh.rb
+            git commit -m "Update mocha-sh to ${VERSION}" || echo "No changes to commit"
+            git push origin HEAD:main
+
+        
 
       - name: 🪟 Update Scoop manifest
         run: |
